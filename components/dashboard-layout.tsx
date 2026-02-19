@@ -51,19 +51,21 @@ export function DashboardLayout({ children, user, menuItems }: DashboardLayoutPr
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50/50">
       {/* Header */}
-      <header className="border-b bg-white sticky top-0 z-10">
-        <div className="flex items-center justify-between px-4 h-16">
+      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-10 shadow-sm">
+        <div className="flex items-center justify-between px-6 h-16">
           <div className="flex items-center gap-4">
-            <h1 className="text-xl font-bold">Gulf App by Co-pilot</h1>
+            <h1 className="text-xl font-bold tracking-tight">Gulf App by Co-pilot</h1>
           </div>
           <div className="flex items-center gap-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-                  <Avatar>
-                    <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+                <Button variant="ghost" className="relative h-10 w-10 rounded-full hover:bg-gray-100">
+                  <Avatar className="h-10 w-10">
+                    <AvatarFallback className="bg-primary text-primary-foreground">
+                      {getInitials(user.name)}
+                    </AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
@@ -77,7 +79,7 @@ export function DashboardLayout({ children, user, menuItems }: DashboardLayoutPr
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout}>
+                <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Logout</span>
                 </DropdownMenuItem>
@@ -90,7 +92,7 @@ export function DashboardLayout({ children, user, menuItems }: DashboardLayoutPr
       <div className="flex flex-1">
         {/* Sidebar */}
         <aside
-          className={`border-r bg-white transition-all duration-300 ${
+          className={`border-r bg-white shadow-sm transition-all duration-300 ${
             sidebarOpen ? 'w-64' : 'w-16'
           }`}
         >
@@ -100,7 +102,7 @@ export function DashboardLayout({ children, user, menuItems }: DashboardLayoutPr
                 variant="ghost"
                 size="icon"
                 onClick={toggleSidebar}
-                className="h-8 w-8"
+                className="h-8 w-8 hover:bg-gray-100"
               >
                 {sidebarOpen ? (
                   <ChevronLeft className="h-4 w-4" />
@@ -109,7 +111,7 @@ export function DashboardLayout({ children, user, menuItems }: DashboardLayoutPr
                 )}
               </Button>
             </div>
-            <nav className="flex-1 overflow-y-auto p-2">
+            <nav className="flex-1 overflow-y-auto p-3">
               <ul className="space-y-1">
                 {menuItems.map(item => (
                   <li key={item.id}>
@@ -117,7 +119,7 @@ export function DashboardLayout({ children, user, menuItems }: DashboardLayoutPr
                       <div>
                         <button
                           onClick={() => toggleMenu(item.id)}
-                          className="w-full flex items-center gap-2 px-3 py-2 rounded-md hover:bg-accent text-sm"
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 text-sm font-medium transition-colors"
                         >
                           {sidebarOpen && (
                             <>
@@ -129,7 +131,7 @@ export function DashboardLayout({ children, user, menuItems }: DashboardLayoutPr
                               />
                             </>
                           )}
-                          {!sidebarOpen && <span>•</span>}
+                          {!sidebarOpen && <span className="text-lg">•</span>}
                         </button>
                         {expandedMenus.includes(item.id) && sidebarOpen && (
                           <ul className="ml-4 mt-1 space-y-1">
@@ -137,7 +139,7 @@ export function DashboardLayout({ children, user, menuItems }: DashboardLayoutPr
                               <li key={child.id}>
                                 <Link
                                   href={child.path || '#'}
-                                  className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-accent text-sm"
+                                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 text-sm transition-colors"
                                 >
                                   {child.label}
                                 </Link>
@@ -149,9 +151,9 @@ export function DashboardLayout({ children, user, menuItems }: DashboardLayoutPr
                     ) : (
                       <Link
                         href={item.path || '#'}
-                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-accent text-sm"
+                        className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 text-sm font-medium transition-colors"
                       >
-                        {sidebarOpen ? item.label : <span>•</span>}
+                        {sidebarOpen ? item.label : <span className="text-lg">•</span>}
                       </Link>
                     )}
                   </li>
@@ -162,7 +164,7 @@ export function DashboardLayout({ children, user, menuItems }: DashboardLayoutPr
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-y-auto bg-gray-50 p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto bg-gray-50/50 p-8">{children}</main>
       </div>
     </div>
   );

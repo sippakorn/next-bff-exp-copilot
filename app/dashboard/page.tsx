@@ -51,10 +51,10 @@ export default function DashboardPage() {
 
   return (
     <DashboardLayout user={user} menuItems={menuItems}>
-      <div className="space-y-6">
-        <div>
+      <div className="space-y-8">
+        <div className="space-y-1">
           <h2 className="text-3xl font-bold tracking-tight">My Tasks</h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Manage and track your assigned tasks
           </p>
         </div>

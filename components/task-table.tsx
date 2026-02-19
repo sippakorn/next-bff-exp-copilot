@@ -72,81 +72,83 @@ export function TaskTable({ tasks }: TaskTableProps) {
   };
 
   return (
-    <Card>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Task Id</TableHead>
-            <TableHead>Location</TableHead>
-            <TableHead>Description</TableHead>
-            <TableHead>Assignee</TableHead>
-            <TableHead>Reviewer</TableHead>
-            <TableHead>Create Date</TableHead>
-            <TableHead>Due Date</TableHead>
-            <TableHead>Type</TableHead>
-            <TableHead>Action</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {tasks.map(task => {
-            const isExpanded = expandedRows.includes(task.id);
-            const showToggle = needsTruncation(task.description);
+    <Card className="shadow-sm border-gray-200">
+      <div className="overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-gray-50/50">
+              <TableHead className="font-semibold">Task Id</TableHead>
+              <TableHead className="font-semibold">Location</TableHead>
+              <TableHead className="font-semibold">Description</TableHead>
+              <TableHead className="font-semibold">Assignee</TableHead>
+              <TableHead className="font-semibold">Reviewer</TableHead>
+              <TableHead className="font-semibold">Create Date</TableHead>
+              <TableHead className="font-semibold">Due Date</TableHead>
+              <TableHead className="font-semibold">Type</TableHead>
+              <TableHead className="font-semibold">Action</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {tasks.map(task => {
+              const isExpanded = expandedRows.includes(task.id);
+              const showToggle = needsTruncation(task.description);
 
-            return (
-              <TableRow key={task.id}>
-                <TableCell className="font-medium">{task.id}</TableCell>
-                <TableCell>{task.location}</TableCell>
-                <TableCell className="max-w-md">
-                  <div className="whitespace-pre-wrap">
-                    {truncateDescription(task.description, isExpanded)}
-                    {showToggle && !isExpanded && '...'}
-                  </div>
-                  {showToggle && (
-                    <button
-                      onClick={() => toggleExpanded(task.id)}
-                      className="text-blue-600 hover:underline text-sm mt-1"
-                    >
-                      {isExpanded ? 'See less' : 'See more'}
-                    </button>
-                  )}
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center gap-2">
-                    <Avatar className="h-8 w-8">
-                      <AvatarFallback className="text-xs">
-                        {task.assignee.avatar}
-                      </AvatarFallback>
-                    </Avatar>
-                    <span className="text-sm">{task.assignee.name}</span>
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center gap-2">
-                    <Avatar className="h-8 w-8">
-                      <AvatarFallback className="text-xs">
-                        {task.reviewer.avatar}
-                      </AvatarFallback>
-                    </Avatar>
-                    <span className="text-sm">{task.reviewer.name}</span>
-                  </div>
-                </TableCell>
-                <TableCell>{task.createDate}</TableCell>
-                <TableCell>{task.dueDate}</TableCell>
-                <TableCell>
-                  <Badge variant={getTypeBadgeVariant(task.type)}>
-                    {task.type}
-                  </Badge>
-                </TableCell>
-                <TableCell>
-                  <Button variant="outline" size="sm">
-                    View
-                  </Button>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+              return (
+                <TableRow key={task.id} className="hover:bg-gray-50/50 transition-colors">
+                  <TableCell className="font-medium">{task.id}</TableCell>
+                  <TableCell>{task.location}</TableCell>
+                  <TableCell className="max-w-md">
+                    <div className="whitespace-pre-wrap text-sm">
+                      {truncateDescription(task.description, isExpanded)}
+                      {showToggle && !isExpanded && '...'}
+                    </div>
+                    {showToggle && (
+                      <button
+                        onClick={() => toggleExpanded(task.id)}
+                        className="text-primary hover:underline text-sm mt-1 font-medium"
+                      >
+                        {isExpanded ? 'See less' : 'See more'}
+                      </button>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      <Avatar className="h-8 w-8">
+                        <AvatarFallback className="text-xs bg-primary/10 text-primary font-medium">
+                          {task.assignee.avatar}
+                        </AvatarFallback>
+                      </Avatar>
+                      <span className="text-sm font-medium">{task.assignee.name}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      <Avatar className="h-8 w-8">
+                        <AvatarFallback className="text-xs bg-secondary text-secondary-foreground font-medium">
+                          {task.reviewer.avatar}
+                        </AvatarFallback>
+                      </Avatar>
+                      <span className="text-sm font-medium">{task.reviewer.name}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-sm text-muted-foreground">{task.createDate}</TableCell>
+                  <TableCell className="text-sm text-muted-foreground">{task.dueDate}</TableCell>
+                  <TableCell>
+                    <Badge variant={getTypeBadgeVariant(task.type)} className="font-medium">
+                      {task.type}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <Button variant="outline" size="sm" className="hover:bg-gray-100">
+                      View
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </div>
     </Card>
   );
 }
