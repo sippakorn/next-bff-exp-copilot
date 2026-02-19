@@ -42,15 +42,15 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
-      <Card className="w-full max-w-md shadow-lg">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold tracking-tight">Login</CardTitle>
-          <CardDescription>Welcome back to Gulf App by Co-pilot</CardDescription>
+      <Card className="w-full max-w-sm">
+        <CardHeader className="space-y-1 pb-4">
+          <CardTitle className="text-xl font-semibold">Login</CardTitle>
+          <CardDescription className="text-sm">Welcome back to Gulf App by Co-pilot</CardDescription>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
+        <CardContent className="pb-4">
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="username" className="text-sm">Username</Label>
               <Input
                 id="username"
                 type="text"
@@ -58,10 +58,11 @@ export default function LoginPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
+                className="h-9"
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+            <div className="space-y-1.5">
+              <Label htmlFor="password" className="text-sm">Password</Label>
               <Input
                 id="password"
                 type="password"
@@ -69,22 +70,23 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="h-9"
               />
             </div>
             {error && (
-              <div className="text-red-500 text-sm">{error}</div>
+              <div className="text-red-500 text-xs">{error}</div>
             )}
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full h-9">
               Sign In
             </Button>
-            <div className="text-sm text-muted-foreground mt-4">
-              <p>Demo users:</p>
-              <ul className="list-disc list-inside mt-1">
+            <div className="text-xs text-muted-foreground pt-2 border-t">
+              <p className="font-medium">Demo users:</p>
+              <ul className="list-disc list-inside mt-1 space-y-0.5">
                 <li>admin (Admin)</li>
                 <li>johndoe (Supervisor)</li>
                 <li>alice (General User)</li>
               </ul>
-              <p className="mt-2">Use any password</p>
+              <p className="mt-1.5">Use any password</p>
             </div>
           </form>
         </CardContent>
