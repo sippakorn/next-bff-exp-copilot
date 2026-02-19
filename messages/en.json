@@ -1,0 +1,38 @@
+{
+  "login": {
+    "title": "Login",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Sign In",
+    "welcome": "Welcome back"
+  },
+  "app": {
+    "name": "Gulf App by Co-pilot"
+  },
+  "menu": {
+    "myTask": "My Task",
+    "taskHistory": "Task History",
+    "quickActions": "Quick Actions",
+    "settings": "Settings",
+    "templateCheckout": "Template Checkout",
+    "cloneTask": "Clone Task",
+    "pendingTask": "Pending Task",
+    "closedTask": "Closed Task"
+  },
+  "profile": {
+    "logout": "Logout"
+  },
+  "table": {
+    "taskId": "Task Id",
+    "location": "Location",
+    "description": "Description",
+    "assignee": "Assignee",
+    "reviewer": "Reviewer",
+    "createDate": "Create Date",
+    "dueDate": "Due Date",
+    "type": "Type",
+    "action": "Action",
+    "seeMore": "See more",
+    "seeLess": "See less"
+  }
+}
